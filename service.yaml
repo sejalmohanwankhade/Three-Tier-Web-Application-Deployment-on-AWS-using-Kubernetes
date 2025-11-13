@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: studentapp-service
+  name: studentapp-frontend-service
 spec:
   ports:
-  - targetPort: 8080
-    port: 8080
+  - targetPort: 80
+    port: 80
     protocol: TCP
-    name: java
+    name: http
   selector:
-    app: studentapp
+    app: studentapp-frontend
   type: LoadBalancer

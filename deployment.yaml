@@ -1,25 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: studentapp
+  name: studentapp-frontend
   labels:
-    app: studentapp
+    app: studentapp-frontend
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: studentapp
-      
   template:
     metadata:
-      labels:
-        app: studentapp
+      labels: 
+        app: studentapp-frontend
     spec:
       containers:
         - name: studentapp-container
-          image: abhipraydh96/backend-b45:v2
+          image: abhipraydh96/frontend-student:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           resources:
             limits:
               cpu: 500m
@@ -27,3 +22,12 @@ spec:
             requests:
               cpu: 400m
               memory: 400Mi
+
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: studentapp-frontend
+  
+  strategy:
+    type: RollingUpdate

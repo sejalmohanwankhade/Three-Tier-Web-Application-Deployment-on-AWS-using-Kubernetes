@@ -1,16 +1,16 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: studentapp-hpa
+  name: studentapp-frontend-hpa
   labels:
-    app: studentapp-hpa
+    app: studentapp-frontend-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: studentapp
+    name: studentapp-frontend
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 3
   metrics:
     - type: Resource
       resource:
